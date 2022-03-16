@@ -18,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long id;
+    private int id;
 
     @Column(name = "is_moderator", columnDefinition = "TINYINT", nullable = false)
     private Boolean isModerator;

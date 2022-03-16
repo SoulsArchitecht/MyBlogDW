@@ -17,4 +17,11 @@ spring:
 #        ddl-auto: none
 
 
-
+blog:
+ details:
+   title: Sergey Shibko
+   subtitle: Мой Блог
+   phone: +7 914 905-70-65
+   email: serje_fox@mail.ru
+   copyright: Sergey Shibko
+   copyrightFrom: 2022
