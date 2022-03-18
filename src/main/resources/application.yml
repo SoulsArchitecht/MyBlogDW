@@ -14,8 +14,12 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+      show_sql: true
     properties:
       hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
         jdbc:
           lob: non_contextual_creation=true
 #      generate-ddl: false
