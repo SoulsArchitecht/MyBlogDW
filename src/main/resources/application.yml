@@ -1,20 +1,27 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
+  liquibase:
+    enabled: false
 
   datasource:
-    url: jdbc:mysql://localhost:3306/my_db
-    username: bestuser
-    password: bestuser
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/myblog?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8
+    username: postgres
+    password: root1289User
+    driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          lob: non_contextual_creation=true
 #      generate-ddl: false
 #      show-sql: true
 #      open-in-view: false
-#      hibernate:
-#        ddl-auto: none
+
 
 
 blog:
