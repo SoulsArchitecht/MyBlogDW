@@ -3,7 +3,7 @@ server:
 
 spring:
   liquibase:
-    enabled: false
+    enabled: true
 
   datasource:
     url: jdbc:postgresql://localhost:5432/myblog?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8
@@ -14,10 +14,12 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
-      dialect: org.hibernate.dialect.PostgreSQL9Dialect
-      show_sql: true
+#      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+#      show_sql: true
     properties:
       hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
         temp:
           use_jdbc_metadata_defaults: false
         jdbc:
