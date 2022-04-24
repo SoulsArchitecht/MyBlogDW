@@ -1,0 +1,725 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-posts-data
+      author: Sergey Sh
+      changes:
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'Salute everyone! Welcome to our wonderful blog!'
+              - column:
+                  name: time
+                  value: '2022-03-24 00:01:01'
+              - column:
+                  name: title
+                  value: 'Salute'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 5
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'NEW'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 2'
+              - column:
+                  name: time
+                  value: '2022-03-28 20:31:21'
+              - column:
+                  name: title
+                  value: 'Title number 2'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'DECLINED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 3'
+              - column:
+                  name: time
+                  value: '2022-04-02 10:22:00'
+              - column:
+                  name: title
+                  value: 'Title number 3'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'NEW'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 4'
+              - column:
+                  name: time
+                  value: '2022-04-03 15:25:25'
+              - column:
+                  name: title
+                  value: 'Title number 4'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 5'
+              - column:
+                  name: time
+                  value: '2022-04-06 18:11:05'
+              - column:
+                  name: title
+                  value: 'Title number 5'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 29
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 6'
+              - column:
+                  name: time
+                  value: '2022-04-16 16:13:15'
+              - column:
+                  name: title
+                  value: 'Title number 6'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 18
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'NEW'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 7'
+              - column:
+                  name: time
+                  value: '2022-04-18 18:11:05'
+              - column:
+                  name: title
+                  value: 'Title number 7'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 8'
+              - column:
+                  name: time
+                  value: '2022-04-19 19:10:00'
+              - column:
+                  name: title
+                  value: 'Title number 8'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 7
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 9'
+              - column:
+                  name: time
+                  value: '2022-04-20 18:11:05'
+              - column:
+                  name: title
+                  value: 'Title number 9'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 40
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 10'
+              - column:
+                  name: time
+                  value: '2022-04-20 19:11:00'
+              - column:
+                  name: title
+                  value: 'Title number 10'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 11
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 11'
+              - column:
+                  name: time
+                  value: '2022-04-20 22:11:06'
+              - column:
+                  name: title
+                  value: 'Title number 11'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 15
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 12
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 12'
+              - column:
+                  name: time
+                  value: '2022-04-20 23:10:55'
+              - column:
+                  name: title
+                  value: 'Title number 12'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 13
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 13'
+              - column:
+                  name: time
+                  value: '2022-04-21 08:01:03'
+              - column:
+                  name: title
+                  value: 'Title number 13'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 8
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 14
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 14'
+              - column:
+                  name: time
+                  value: '2022-04-21 09:15:22'
+              - column:
+                  name: title
+                  value: 'Title number 14'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 15
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 15'
+              - column:
+                  name: time
+                  value: '2022-04-21 12:25:52'
+              - column:
+                  name: title
+                  value: 'Title number 15'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 12
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 16
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'DECLINED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 16'
+              - column:
+                  name: time
+                  value: '2022-04-21 17:11:05'
+              - column:
+                  name: title
+                  value: 'Title number 16'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 17
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 17'
+              - column:
+                  name: time
+                  value: '2022-04-21 18:01:07'
+              - column:
+                  name: title
+                  value: 'Title number 17'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 23
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 18
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 18'
+              - column:
+                  name: time
+                  value: '2022-04-21 19:33:35'
+              - column:
+                  name: title
+                  value: 'Title number 18'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 6
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 19
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 19'
+              - column:
+                  name: time
+                  value: '2022-04-21 20:10:44'
+              - column:
+                  name: title
+                  value: 'Title number 19'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 20
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'NEW'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 20'
+              - column:
+                  name: time
+                  value: '2022-04-21 22:10:43'
+              - column:
+                  name: title
+                  value: 'Title number 20'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 21
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 21'
+              - column:
+                  name: time
+                  value: '2022-04-21 23:22:33'
+              - column:
+                  name: title
+                  value: 'Title number 21'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 13
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 22
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 22'
+              - column:
+                  name: time
+                  value: '2022-04-22 02:10:23'
+              - column:
+                  name: title
+                  value: 'Title number 22'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 0
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 23
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'ACCEPTED'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 23'
+              - column:
+                  name: time
+                  value: '2022-04-22 11:11:13'
+              - column:
+                  name: title
+                  value: 'Title number 23'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: view_count
+                  value: 3
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  value: 24
+              - column:
+                  name: is_active
+                  value: 'true'
+              - column:
+                  name: 'moderation_status'
+                  value: 'NEW'
+              - column:
+                  name: 'moderator_id'
+                  value: 1
+              - column:
+                  name: text
+                  value: 'This is the post number 24'
+              - column:
+                  name: time
+                  value: '2022-04-22 17:30:43'
+              - column:
+                  name: title
+                  value: 'Title number 24'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: view_count
+                  value: 0

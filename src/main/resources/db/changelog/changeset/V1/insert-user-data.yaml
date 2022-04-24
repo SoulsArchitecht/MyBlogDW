@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-user-data
+      author: Sergey Sh
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: code
+                  value: 0001
+              - column:
+                  name: email
+                  value: user_1@gmail.com
+              - column:
+                  name: is_moderator
+                  value: 'true'
+              - column:
+                  name: name
+                  value: user1
+              - column:
+                  name: password
+                  value: password1
+              - column:
+                  name: reg_time
+                  value: '2022-03-24 00:00:00'
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: code
+                  value: 0002
+              - column:
+                  name: email
+                  value: user_2@gmail.com
+              - column:
+                  name: is_moderator
+                  value: 'false'
+              - column:
+                  name: name
+                  value: user2
+              - column:
+                  name: password
+                  value: password2
+              - column:
+                  name: reg_time
+                  value: '2022-03-25 00:01:00'
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: code
+                  value: 0003
+              - column:
+                  name: email
+                  value: user_3@gmail.com
+              - column:
+                  name: is_moderator
+                  value: 'false'
+              - column:
+                  name: name
+                  value: user3
+              - column:
+                  name: password
+                  value: password3
+              - column:
+                  name: reg_time
+                  value: '2022-03-28 10:01:55'

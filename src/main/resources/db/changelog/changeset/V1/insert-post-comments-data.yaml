@@ -1,0 +1,257 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-post-comments-data
+      author: Sergey Sh
+      changes:
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: text
+                  value: 'comment from Post 5 left by user 2'
+              - column:
+                  name: time
+                  value: '2022-04-06 18:15:05'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: text
+                  value: 'comment from Post 5 left by user 3'
+              - column:
+                  name: time
+                  value: '2022-04-06 19:12:01'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: text
+                  value: 'comment from Post 5 left by user 1'
+              - column:
+                  name: time
+                  value: '2022-04-06 19:23:31'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: text
+                  value: 'comment from Post 5 left by user 2'
+              - column:
+                  name: time
+                  value: '2022-04-06 23:42:01'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: text
+                  value: 'comment from Post 9 left by user 2'
+              - column:
+                  name: time
+                  value: '2022-04-20 21:10:05'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: text
+                  value: 'comment from Post 9 left by user 3'
+              - column:
+                  name: time
+                  value: '2022-04-20 22:10:05'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: text
+                  value: 'comment from Post 9 left by user 1'
+              - column:
+                  name: time
+                  value: '2022-04-20 21:15:00'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 17
+              - column:
+                  name: text
+                  value: 'comment from Post 17 left by user 3'
+              - column:
+                  name: time
+                  value: '2022-04-21 18:21:07'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: text
+                  value: 'comment from Post 9 left by user 2'
+              - column:
+                  name: time
+                  value: '2022-04-21 21:05:30'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 17
+              - column:
+                  name: text
+                  value: 'comment from Post 17 left by user 1'
+              - column:
+                  name: time
+                  value: '2022-04-22 13:11:17'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 11
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: text
+                  value: 'comment from Post 9 left by user 3'
+              - column:
+                  name: time
+                  value: '2022-04-22 15:15:15'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  value: 12
+              - column:
+                  name: parent_id
+                  value: null
+              - column:
+                  name: post_id
+                  value: 17
+              - column:
+                  name: text
+                  value: 'comment from Post 17 left by user 3'
+              - column:
+                  name: time
+                  value: '2022-04-22 19:13:12'
+              - column:
+                  name: user_id
+                  value: 3
