@@ -1,17 +1,15 @@
 package sshibko.myblog.controller;
 
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sshibko.myblog.api.response.InitResponse;
-import sshibko.myblog.api.response.PostResponse;
-import sshibko.myblog.api.response.SettingsResponse;
-import sshibko.myblog.api.response.TagListResponse;
-import sshibko.myblog.service.PostService;
-import sshibko.myblog.service.SettingsService;
-import sshibko.myblog.service.TagService;
+import sshibko.myblog.api.response.*;
+import sshibko.myblog.service.PostServiceImpl;
+import sshibko.myblog.service.GlobalSettingsServiceImpl;
+import sshibko.myblog.service.TagServiceImpl;
 
 import java.util.List;
 
@@ -21,43 +19,32 @@ import java.util.List;
 @RequestMapping("/api")
 public class ApiGeneralController {
 
-    private final SettingsService settingsService;
+    private final GlobalSettingsServiceImpl globalSettingsServiceImpl;
     private final InitResponse initResponse;
-    private final PostService postService;
-    private final TagService tagService;
+    private final PostServiceImpl postServiceImpl;
+    private final TagServiceImpl tagServiceImpl;
 
 
-    public ApiGeneralController(SettingsService settingsService, InitResponse initResponse, PostService postService, TagService tagService) {
-        this.settingsService = settingsService;
+    public ApiGeneralController(GlobalSettingsServiceImpl globalSettingsServiceImpl, InitResponse initResponse, PostServiceImpl postServiceImpl, TagServiceImpl tagServiceImpl) {
+        this.globalSettingsServiceImpl = globalSettingsServiceImpl;
         this.initResponse = initResponse;
-        this.postService = postService;
-        this.tagService = tagService;
+        this.postServiceImpl = postServiceImpl;
+        this.tagServiceImpl = tagServiceImpl;
     }
 
     @GetMapping("/init")
-    private InitResponse init() {
-        return initResponse;
+    private ResponseEntity<InitResponse> init() {
+        return ResponseEntity.ok(initResponse);
     }
 
     @GetMapping("/settings")
-    private SettingsResponse settings() {
-        return settingsService.getGlobalSettings();
-    }
-
-    @GetMapping("/post")
-    private List<PostResponse> postList() {
-        return postService.getPostList();
-    }
-
-    @GetMapping("/post/{id}")
-    private PostResponse getPost(@PathVariable(name = "id") int id) {
-
-        return postService.getPost();
+    private ResponseEntity<GlobalSettingsResponse> settings() {
+        return ResponseEntity.ok(globalSettingsServiceImpl.getGlobalSettingsResponse());
     }
 
     @GetMapping("/tag")
-    private List<TagListResponse> tagList() {
-        return tagService.getTagListResponseList();
+    public ResponseEntity<TagListResponse> tagList() {
+        return ResponseEntity.ok(tagServiceImpl.tagResponseList());
     }
 
 
