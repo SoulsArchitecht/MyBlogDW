@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8088
 
 spring:
   liquibase:
@@ -11,14 +11,15 @@ spring:
     password: root1289User
     driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+#    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 #      dialect: org.hibernate.dialect.PostgreSQL9Dialect
 #      show_sql: true
     properties:
       hibernate:
-        show_sql: true
+        show_sql: false
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
         temp:
           use_jdbc_metadata_defaults: false

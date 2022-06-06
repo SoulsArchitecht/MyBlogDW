@@ -4,22 +4,23 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import sshibko.myblog.api.response.UserForPostResponse;
 import sshibko.myblog.model.entity.User;
+import sshibko.myblog.repository.UserRepository;
 
-import java.time.LocalDateTime;
 
 @Data
 @Service
 public class UserServiceImpl implements UserService {
 
-    //temporary stopper before DB injection
+    private UserRepository userRepository;
+
     @Override
     public User getUser(int id) {
-        return new User(1, false, LocalDateTime.parse("22/12/1959"), "John", "post", "password", "code", "photo" );
+        return userRepository.getById(id);
     }
 
     @Override
     public Boolean getApiAuthCheck() {
-        return true;
+        return false;
     }
 
     @Override

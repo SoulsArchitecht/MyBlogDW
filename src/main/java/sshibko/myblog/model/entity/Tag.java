@@ -26,5 +26,5 @@ public class Tag {
     @JoinTable(name = "tag2post",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    List<Post> posts;
+    private List<Post> posts;
 }
