@@ -3,7 +3,7 @@ server:
 
 spring:
   liquibase:
-    enabled: true
+    enabled: false
 
   datasource:
     url: jdbc:postgresql://localhost:5432/myblog?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8

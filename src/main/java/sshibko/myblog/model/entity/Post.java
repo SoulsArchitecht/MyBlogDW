@@ -19,7 +19,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private long id;
+    private int id;
 
     @Column(name = "is_active", columnDefinition = "TINYINT", nullable = false)
     private Boolean isActive;
@@ -45,7 +45,7 @@ public class Post {
     private String text;
 
     @Column(name = "view_count", nullable = false)
-    private long viewCount;
+    private int viewCount;
 
     @OneToMany(mappedBy = "post")
     private List<PostComment> postComments;
@@ -55,7 +55,7 @@ public class Post {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tag2post",
-            joinColumns = @JoinColumn(name = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id"))
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 }

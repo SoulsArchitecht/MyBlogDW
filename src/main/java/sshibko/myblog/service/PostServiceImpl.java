@@ -19,12 +19,12 @@ import sshibko.myblog.repository.PostRepository;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 @Service
-@AllArgsConstructor
 public class PostServiceImpl implements PostService {
 /*    public List<PostResponse> postResponseList;
 
@@ -47,11 +47,15 @@ public class PostServiceImpl implements PostService {
     }*/
     @Autowired
     private final PostRepository postRepository;
-    @Autowired
-    private final UserService userService;
+/*    @Autowired
+    private final UserService userService;*/
     @Autowired
     private final PostMapperDto postMapperDto;
 
+    public PostServiceImpl(PostRepository postRepository, PostMapperDto postMapperDto) {
+        this.postRepository = postRepository;
+        this.postMapperDto = postMapperDto;
+    }
 
     @Override
     public Post getPost(int id) {
@@ -61,9 +65,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostListResponse getPostList(int offset, int limit, String mode) {
         int count = postRepository.getPostCount(true, ModerationStatus.ACCEPTED,
-                LocalDateTime.now(Clock.systemUTC()));
+                LocalDateTime.now(Clock.system(ZoneId.systemDefault())));
         List<CalculatedPostDto> calculatedPostDtoList = postRepository.getCalculatedPostDtoList(
-                true, ModerationStatus.ACCEPTED, LocalDateTime.now(Clock.systemUTC()),
+                true, ModerationStatus.ACCEPTED, LocalDateTime.now(Clock.system(ZoneId.systemDefault())),
                 getPageRequest(offset, limit, mode)
         );
 

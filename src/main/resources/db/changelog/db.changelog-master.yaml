@@ -13,3 +13,5 @@ databaseChangeLog:
       file: db/changelog/changeset/V1/insert-post-comments-data.yaml
   - include:
       file: db/changelog/changeset/V1/insert-post-votes-data.yaml
+  - include:
+      file: db/changelog/changeset/V1/insert-tag2post-data.yaml

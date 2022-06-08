@@ -7,26 +7,31 @@ import sshibko.myblog.api.response.PostListResponse;
 import sshibko.myblog.api.response.PostResponse;
 import sshibko.myblog.model.entity.Post;
 import sshibko.myblog.service.PostService;
+import sshibko.myblog.service.PostServiceImpl;
 
 @Data
 @RestController
 @RequestMapping("/api/post")
 public class ApiPostController {
 
-    private final PostService postService;
+    private final PostServiceImpl postServiceImpl;
+
+    public ApiPostController(PostServiceImpl postServiceImpl) {
+        this.postServiceImpl = postServiceImpl;
+    }
 
     @GetMapping("")
     private ResponseEntity<PostListResponse> postList(
-            @RequestParam(name = "offset") int offset,
-            @RequestParam(name = "limit") int limit,
-            @RequestParam(name = "mode") String mode
+            @RequestParam(name = "offset", defaultValue = "0") int offset,
+            @RequestParam(name = "limit", defaultValue = "10") int limit,
+            @RequestParam(name = "mode", defaultValue = "recent") String mode
     ) {
-        return ResponseEntity.ok(postService.getPostList(offset, limit, mode));
+        return ResponseEntity.ok(postServiceImpl.getPostList(offset, limit, mode));
     }
 
     @GetMapping("/{id}")
     private ResponseEntity<Post> getPost(@PathVariable(name = "id") int id) {
 
-        return ResponseEntity.ok(postService.getPost(id));
+        return ResponseEntity.ok(postServiceImpl.getPost(id));
     }
 }

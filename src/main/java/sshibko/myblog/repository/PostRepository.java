@@ -13,7 +13,10 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-    Post getPostById(int id);
+    String queryById = "SELECT p FROM Post p WHERE p.id = :id";
+
+    @Query(value = queryById)
+    Post getPostById(@Param("id") int id);
 
     String query1 = "select count(p) as count "
             + "from Post p "
@@ -21,15 +24,15 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             + " and p.moderationStatus = :moderationStatus "
             + " and p.time <= :time ";
 
-    @Query(value = query1, nativeQuery = true)
+    @Query(value = query1)
     int getPostCount(
             @Param("isActive") boolean isActive,
             @Param("moderationStatus") ModerationStatus moderationStatus,
             @Param("time") LocalDateTime time);
 
     String query2 = "select p as post, "
-            + " size(p.post(Comments) as commentCount, "
-            + " coalesce((select size(v) fom v where v.value > 0 group by p), 0) as likeCount,"
+            + " size(p.postComments) as commentCount, "
+            + " coalesce((select size(v) from v where v.value > 0 group by p), 0) as likeCount,"
             + " coalesce((select size(v) from v where v.value < 0 group by p), 0) as dislikeCount "
             + "from Post p left join p.postVotes v "
             + "where p.isActive = :isActive "
@@ -37,7 +40,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             + " and p.time <= :time "
             + "group by p ";
 
-    @Query(value = query2, nativeQuery = true)
+    @Query(value = query2)
     List<CalculatedPostDto> getCalculatedPostDtoList(
             @Param("isActive") boolean isActive,
             @Param("moderationStatus") ModerationStatus moderationStatus,
