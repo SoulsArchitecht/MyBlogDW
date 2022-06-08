@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-tags-data
+      author: Sergey Sh
+      changes:
+        - insert:
+            tableName: tags
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: 'job'
+        - insert:
+            tableName: tags
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: 'family'
+        - insert:
+            tableName: tags
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: 'study'

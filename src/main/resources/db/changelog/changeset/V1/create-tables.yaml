@@ -1,0 +1,190 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tables
+      author: Sergey Sh
+      changes:
+        - createTable if not exist:
+            tableName: global_settings
+            columns:
+              - column:
+                  name: multiuser_mode
+                  type: tinyint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: post_premoderation
+                  type: tinyint
+                  constraints:
+                    nullable: false
+              - colomn:
+                  name: statistics_is_public
+
+        - createTable if not exist:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: tinyint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: moderation_status
+                  type: tinyint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: moderator_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    #foreignKey: true composite key
+                    nullable: false
+
+
+        - createTable if not exist:
+          tableName: users
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: is_moderator
+                type: tinyint
+                constraints:
+                  nullable: false
+            - column:
+                name: reg_time
+                type: datatime
+                constraints:
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: email
+                type: varchar(100)
+                constraints:
+                  nullable: false
+            - column:
+                name: password
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: code
+                type: varchar(50)
+                constraints:
+                  nullable: true
+            - column:
+                name: photo
+                type: text
+                constraints:
+                  nullable: true
+
+        - createTable if not exist:
+            tableName: post_comments
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: parent_id
+                  type: int
+                  constraints:
+                    #ck
+                    nullable: false
+              - column:
+                  name: post_id
+                  type: int
+                  constraints:
+                    #compKey
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    #compKey
+                    nullable: false
+              - column:
+                  name: time
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: text
+                  constraints:
+                    nullable: false
+
+        - createTable if not exist:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    #forKey
+                    nullable: false
+              - column:
+                  name: post_id
+                  type: int
+                  constraints:
+                    #forKey
+                    nullable: false
+              - column:
+                  name: time
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: tinyint
+                  constraints:
+                    nullable: false
+
+        - createTable if not exist:
+            tableName: tags
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              #compKey- column:
+
+

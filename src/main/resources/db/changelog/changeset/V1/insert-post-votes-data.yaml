@@ -1,0 +1,294 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-post-votes-data
+      author: Sergey Sh
+      changes:
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: time
+                  value: '2022-04-06 18:15:08'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: time
+                  value: '2022-04-06 20:15:08'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: post_id
+                  value: 5
+              - column:
+                  name: time
+                  value: '2022-04-06 22:05:18'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: time
+                  value: '2022-04-20 22:11:05'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: time
+                  value: '2022-04-20 22:21:05'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: post_id
+                  value: 9
+              - column:
+                  name: time
+                  value: '2022-04-20 22:31:15'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: post_id
+                  value: 6
+              - column:
+                  name: time
+                  value: '2022-04-16 16:19:18'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: post_id
+                  value: 8
+              - column:
+                  name: time
+                  value: '2022-04-19 20:10:00'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: post_id
+                  value: 17
+              - column:
+                  name: time
+                  value: '2022-04-21 19:21:07'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: post_id
+                  value: 17
+              - column:
+                  name: time
+                  value: '2022-04-21 23:21:07'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 11
+              - column:
+                  name: post_id
+                  value: 11
+              - column:
+                  name: time
+                  value: '2022-04-20 22:14:26'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 12
+              - column:
+                  name: post_id
+                  value: 11
+              - column:
+                  name: time
+                  value: '2022-04-20 23:54:25'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 13
+              - column:
+                  name: post_id
+                  value: 13
+              - column:
+                  name: time
+                  value: '2022-04-21 08:06:03'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 14
+              - column:
+                  name: post_id
+                  value: 13
+              - column:
+                  name: time
+                  value: '2022-04-21 12:16:03'
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: value
+                  value: -1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 15
+              - column:
+                  name: post_id
+                  value: 18
+              - column:
+                  name: time
+                  value: '2022-04-21 19:33:55'
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: value
+                  value: 1
+        - insert:
+            tableName: post_votes
+            columns:
+              - column:
+                  name: id
+                  value: 16
+              - column:
+                  name: post_id
+                  value: 18
+              - column:
+                  name: time
+                  value: '2022-04-21 21:34:55'
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: value
+                  value: 1
+
