@@ -3,6 +3,7 @@ package sshibko.myblog.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "post_votes")
+@ToString(callSuper = true, of = {"post_id"})
 public class PostVote {
 
     @Id

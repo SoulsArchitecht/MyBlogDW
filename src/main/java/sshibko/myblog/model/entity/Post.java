@@ -3,6 +3,7 @@ package sshibko.myblog.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import sshibko.myblog.model.enums.ModerationStatus;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "posts")
+@ToString(callSuper = true, of = {"title"})
 public class Post {
 
     @Id

@@ -3,6 +3,7 @@ package sshibko.myblog.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "tags")
+@ToString(callSuper = true, of = {"name"})
 public class Tag {
 
     @Id
