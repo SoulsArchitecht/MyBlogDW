@@ -1,6 +1,7 @@
 package sshibko.myblog.controller;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,13 @@ import java.util.List;
 // или @Controller + @ResponseBody
 @RequestMapping("/api")
 public class ApiGeneralController {
-
+    @Autowired
     private final GlobalSettingsServiceImpl globalSettingsServiceImpl;
+    @Autowired
     private final InitResponse initResponse;
+    @Autowired
     private final PostServiceImpl postServiceImpl;
+    @Autowired
     private final TagServiceImpl tagServiceImpl;
 
 

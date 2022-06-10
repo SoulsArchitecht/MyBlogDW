@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -40,4 +41,8 @@ public class User {
 
     @Column(name = "photo", columnDefinition = "TEXT")
     private String photoUrl;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Post> postList;
+    
 }

@@ -1,6 +1,7 @@
 package sshibko.myblog.controller;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sshibko.myblog.api.response.PostListResponse;
@@ -9,11 +10,13 @@ import sshibko.myblog.model.entity.Post;
 import sshibko.myblog.service.PostService;
 import sshibko.myblog.service.PostServiceImpl;
 
+import java.util.Optional;
+
 @Data
 @RestController
 @RequestMapping("/api/post")
 public class ApiPostController {
-
+    @Autowired
     private final PostServiceImpl postServiceImpl;
 
     public ApiPostController(PostServiceImpl postServiceImpl) {
@@ -30,7 +33,7 @@ public class ApiPostController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Post> getPost(@PathVariable(name = "id") int id) {
+    private ResponseEntity<Optional<Post>> getPost(@PathVariable(name = "id") int id) {
 
         return ResponseEntity.ok(postServiceImpl.getPost(id));
     }

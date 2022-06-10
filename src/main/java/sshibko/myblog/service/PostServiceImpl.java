@@ -1,16 +1,13 @@
 package sshibko.myblog.service;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import sshibko.myblog.api.response.PostListResponse;
 import sshibko.myblog.api.response.PostResponse;
-import sshibko.myblog.api.response.UserForPostResponse;
 import sshibko.myblog.model.dto.mapper.CalculatedPostDto;
 import sshibko.myblog.model.dto.mapper.PostMapperDto;
 import sshibko.myblog.model.entity.Post;
@@ -21,6 +18,7 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Data
@@ -58,8 +56,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getPost(int id) {
-        return postRepository.getPostById(id);
+    public Optional<Post> getPost(int id) {
+        return postRepository.findById(id);
     }
 
     @Override
@@ -95,6 +93,9 @@ public class PostServiceImpl implements PostService {
                 sort = JpaSort.unsafe(Sort.Direction.DESC, "size(p.postVotes)")
                         .and(sortByViewCountDesc)
                         .and(sortByTimeDesc);
+                break;
+            case "recent":
+                sort = sortByTimeDesc;
                 break;
             //default include the "recent" by the tech task
             default:

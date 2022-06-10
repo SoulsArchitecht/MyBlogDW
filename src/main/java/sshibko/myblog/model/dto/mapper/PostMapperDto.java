@@ -14,7 +14,7 @@ public interface PostMapperDto {
 
     //PostMapperDto toPostDto(Post post);
 
-    Post toPost(PostMapperDto postMapperDto);
+    //Post toPost(PostMapperDto postMapperDto);
 
     @Mapping(source = "calculatedPostDto.post.id", target = "id")
     @Mapping(source = "calculatedPostDto.post.user", target = "userForPostResponse")
