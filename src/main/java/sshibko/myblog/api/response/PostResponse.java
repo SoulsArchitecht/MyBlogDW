@@ -12,8 +12,9 @@ public class PostResponse {
 
     private int id;
     private long timestamp;
-    //@JsonProperty("user")
-    private UserForPostResponse userForPostResponse;
+/*    @JsonProperty("user")
+    private UserForPostResponse userForPostResponse;*/
+    private UserForPostResponse user;
     private String title;
     private String announce;
     private int likeCount;

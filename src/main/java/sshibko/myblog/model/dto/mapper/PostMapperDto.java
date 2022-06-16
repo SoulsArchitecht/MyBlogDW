@@ -17,7 +17,7 @@ public interface PostMapperDto {
     //Post toPost(PostMapperDto postMapperDto);
 
     @Mapping(source = "calculatedPostDto.post.id", target = "id")
-    @Mapping(source = "calculatedPostDto.post.user", target = "userForPostResponse")
+    @Mapping(source = "calculatedPostDto.post.user", target = "user")
     @Mapping(source = "calculatedPostDto.post.title", target = "title")
     @Mapping(source = "calculatedPostDto.post.viewCount", target = "viewCount")
     @Mapping(target = "announce", expression = "java(Announce.getAnnounce(calculatedPostDto))")
