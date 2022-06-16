@@ -12,7 +12,7 @@ public class PostResponse {
 
     private int id;
     private long timestamp;
-    @JsonProperty("user")
+    //@JsonProperty("user")
     private UserForPostResponse userForPostResponse;
     private String title;
     private String announce;
