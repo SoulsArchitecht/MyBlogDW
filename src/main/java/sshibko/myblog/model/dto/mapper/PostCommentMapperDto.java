@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.PostComment;
 public interface PostCommentMapperDto {
     PostCommentMapperDto INSTANCE = Mappers.getMapper(PostCommentMapperDto.class);
 
-    PostCommentMapperDto toPostCommentDto(PostComment postComment);
+/*    PostCommentMapperDto toPostCommentDto(PostComment postComment);
 
-    PostComment toPostComment(PostCommentMapperDto postCommentMapperDto);
+    PostComment toPostComment(PostCommentMapperDto postCommentMapperDto);*/
 }

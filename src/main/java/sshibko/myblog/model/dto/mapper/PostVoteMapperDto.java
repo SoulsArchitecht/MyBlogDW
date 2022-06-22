@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.PostVote;
 public interface PostVoteMapperDto {
     PostVoteMapperDto INSTANCE = Mappers.getMapper(PostVoteMapperDto.class);
 
-    PostVoteMapperDto toPostVoteDto(PostVote postVote);
+/*    PostVoteMapperDto toPostVoteDto(PostVote postVote);
 
-    PostVote toPostVote(PostVoteMapperDto postVoteMapperDto);
+    PostVote toPostVote(PostVoteMapperDto postVoteMapperDto);*/
 }

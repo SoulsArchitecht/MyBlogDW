@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.GlobalSettings;
 public interface GlobalSettingsMapperDto {
     GlobalSettingsMapperDto INSTANCE = Mappers.getMapper(GlobalSettingsMapperDto.class);
 
-    GlobalSettingsMapperDto toGlobalSettingsDto(GlobalSettings globalSettings);
+/*    GlobalSettingsMapperDto toGlobalSettingsDto(GlobalSettings globalSettings);
 
-    GlobalSettings toGlobalSettings(GlobalSettingsMapperDto globalSettingsMapperDto);
+    GlobalSettings toGlobalSettings(GlobalSettingsMapperDto globalSettingsMapperDto);*/
 }

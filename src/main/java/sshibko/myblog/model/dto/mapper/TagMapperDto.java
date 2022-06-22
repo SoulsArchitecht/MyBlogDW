@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.Tag;
 public interface TagMapperDto {
     TagMapperDto INSTANCE = Mappers.getMapper(TagMapperDto.class);
 
-    TagMapperDto toTagDto(Tag tag);
+/*    TagMapperDto toTagDto(Tag tag);
 
-    Tag toTag(TagMapperDto tagMapperDto);
+    Tag toTag(TagMapperDto tagMapperDto);*/
 }

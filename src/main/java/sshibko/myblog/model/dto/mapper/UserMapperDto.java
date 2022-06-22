@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.User;
 public interface UserMapperDto {
     UserMapperDto INSTANCE = Mappers.getMapper(UserMapperDto.class);
 
-    UserMapperDto toUserDto(User user);
+/*    UserMapperDto toUserDto(User user);
 
-    User toUser(UserMapperDto userMapperDto);
+    User toUser(UserMapperDto userMapperDto);*/
 }

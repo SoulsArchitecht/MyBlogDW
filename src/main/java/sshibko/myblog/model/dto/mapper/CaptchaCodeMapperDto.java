@@ -8,7 +8,7 @@ import sshibko.myblog.model.entity.CaptchaCode;
 public interface CaptchaCodeMapperDto {
     CaptchaCodeMapperDto INSTANCE = Mappers.getMapper(CaptchaCodeMapperDto.class);
 
-    CaptchaCodeMapperDto toCaptchaCodeDto(CaptchaCode captchaCode);
+/*    CaptchaCodeMapperDto toCaptchaCodeDto(CaptchaCode captchaCode);
 
-    CaptchaCode toCaptchaCode(CaptchaCodeMapperDto captchaCodeMapperDto);
+    CaptchaCode toCaptchaCode(CaptchaCodeMapperDto captchaCodeMapperDto);*/
 }
