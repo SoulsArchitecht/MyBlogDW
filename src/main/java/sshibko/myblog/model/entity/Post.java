@@ -23,7 +23,7 @@ public class Post {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "is_active", columnDefinition = "TINYINT", nullable = false)
+    @Column(name = "is_active", columnDefinition = "BOOLEAN", nullable = false)
     private Boolean isActive;
 
     @Enumerated(value = EnumType.STRING)

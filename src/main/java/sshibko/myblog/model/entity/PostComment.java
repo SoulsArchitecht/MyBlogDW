@@ -33,7 +33,7 @@ public class PostComment {
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
-    @Column(name = "time", columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "time", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime time;
 
     @Column(name = "text", columnDefinition = "TEXT", nullable = false)

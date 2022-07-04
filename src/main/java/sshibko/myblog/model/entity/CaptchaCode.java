@@ -19,12 +19,12 @@ public class CaptchaCode {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "time", columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "time", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime time;
 
-    @Column(name = "code", columnDefinition = "TINYINT", nullable = false)
+    @Column(name = "code", columnDefinition = "BOOLEAN", nullable = false)
     private String code;
 
-    @Column(name = "secret_code", columnDefinition = "TINYINT", nullable = false)
+    @Column(name = "secret_code", columnDefinition = "BOOLEAN", nullable = false)
     private String secretCode;
 }

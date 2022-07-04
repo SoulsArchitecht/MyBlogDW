@@ -23,10 +23,10 @@ public class User {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "is_moderator", columnDefinition = "TINYINT", nullable = false)
+    @Column(name = "is_moderator", columnDefinition = "BOOLEAN", nullable = false)
     private Boolean isModerator;
 
-    @Column(name = "reg_time", columnDefinition = "DATETIME", nullable = false)
+    @Column(name = "reg_time", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime regTime;
 
     @Column(name = "name", nullable = false)
