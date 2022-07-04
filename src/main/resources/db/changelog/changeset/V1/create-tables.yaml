@@ -3,21 +3,24 @@ databaseChangeLog:
       id: create-tables
       author: Sergey Sh
       changes:
-        - createTable if not exist:
-            tableName: global_settings
-            columns:
-              - column:
-                  name: multiuser_mode
-                  type: tinyint
-                  constraints:
-                    nullable: false
-              - column:
-                  name: post_premoderation
-                  type: tinyint
-                  constraints:
-                    nullable: false
-              - colomn:
-                  name: statistics_is_public
+#        - createTable if not exist:
+#            tableName: global_settings
+#            columns:
+#              - column:
+#                  name: multiuser_mode
+#                 type: boolean
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: post_premoderation
+#                  type: boolean
+#                  constraints:
+#                    nullable: false
+#              - colomn:
+#                  name: statistics_is_public
+#                  type: boolean
+#                  constraints:
+#                    nullable: false
 
         - createTable if not exist:
             tableName: posts
@@ -31,12 +34,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: is_active
-                  type: tinyint
+                  type: boolean
                   constraints:
                     nullable: false
               - column:
                   name: moderation_status
-                  type: tinyint
+                  type: boolean
                   constraints:
                     nullable: false
               - column:
@@ -48,8 +51,23 @@ databaseChangeLog:
                   name: user_id
                   type: int
                   constraints:
-                    #foreignKey: true composite key
                     nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: view_count
+                  type: int
+                  constraints:
+                    nullabel: false
+
 
 
         - createTable if not exist:
@@ -64,12 +82,12 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: is_moderator
-                type: tinyint
+                type: boolean
                 constraints:
                   nullable: false
             - column:
                 name: reg_time
-                type: datatime
+                type: timestamp
                 constraints:
                   nullable: false
             - column:
@@ -79,17 +97,17 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: email
-                type: varchar(100)
+                type: varchar(255)
                 constraints:
                   nullable: false
             - column:
                 name: password
-                type: varchar(50)
+                type: varchar(255)
                 constraints:
                   nullable: false
             - column:
                 name: code
-                type: varchar(50)
+                type: varchar(255)
                 constraints:
                   nullable: true
             - column:
@@ -112,23 +130,20 @@ databaseChangeLog:
                   name: parent_id
                   type: int
                   constraints:
-                    #ck
-                    nullable: false
+                    nullable: true
               - column:
                   name: post_id
                   type: int
                   constraints:
-                    #compKey
                     nullable: false
               - column:
                   name: user_id
                   type: int
                   constraints:
-                    #compKey
                     nullable: false
               - column:
                   name: time
-                  type: datetime
+                  type: timestamp
                   constraints:
                     nullable: false
               - column:
@@ -151,22 +166,20 @@ databaseChangeLog:
                   name: user_id
                   type: int
                   constraints:
-                    #forKey
                     nullable: false
               - column:
                   name: post_id
                   type: int
                   constraints:
-                    #forKey
                     nullable: false
               - column:
                   name: time
-                  type: datetime
+                  type: timestamp
                   constraints:
                     nullable: false
               - column:
                   name: value
-                  type: tinyint
+                  type: boolean
                   constraints:
                     nullable: false
 
@@ -185,6 +198,79 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
-              #compKey- column:
+
+        - createTable if not exist:
+            tableName: tag2post
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: post_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tag_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - createTable if not exist:
+            tableName: captcha_codes
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: time
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: secret_code
+                  type: boolean
+                  constraints:
+                    nullable: false
+
+        - createTable if not exist:
+            tableName: global_settings
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
 
 
