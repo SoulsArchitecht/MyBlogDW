@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: name
-                  value: 'job'
+                  value: 'Nvidia'
         - insert:
             tableName: tags
             columns:
@@ -20,7 +20,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: name
-                  value: 'family'
+                  value: 'AMD'
         - insert:
             tableName: tags
             columns:
@@ -29,4 +29,4 @@ databaseChangeLog:
                   value: 3
               - column:
                   name: name
-                  value: 'study'
+                  value: 'Intel'
