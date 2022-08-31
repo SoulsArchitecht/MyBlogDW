@@ -5,9 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sshibko.myblog.api.response.PostListResponse;
-import sshibko.myblog.api.response.PostResponse;
 import sshibko.myblog.model.entity.Post;
-import sshibko.myblog.service.PostService;
+import sshibko.myblog.repository.PostRepository;
 import sshibko.myblog.service.PostServiceImpl;
 
 import java.util.Optional;
@@ -16,11 +15,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/post")
 public class ApiPostController {
-    @Autowired
+    
     private final PostServiceImpl postServiceImpl;
 
-    public ApiPostController(PostServiceImpl postServiceImpl) {
+    private final PostRepository postRepository;
+
+    @Autowired
+    public ApiPostController(PostServiceImpl postServiceImpl, PostRepository postRepository) {
         this.postServiceImpl = postServiceImpl;
+        this.postRepository = postRepository;
     }
 
     @GetMapping("")

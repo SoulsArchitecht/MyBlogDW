@@ -2,6 +2,7 @@ package sshibko.myblog.service;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
@@ -43,21 +44,57 @@ public class PostServiceImpl implements PostService {
     public List<PostResponse> getPostList() {
         return postResponseList;
     }*/
-    @Autowired
+
+    private Sort sort;
+    private final int MAX_LENGTH = 150;
+    private final int MIN_TITLE_LENGTH = 3;
+    private final int MIN_TEXT_LENGTH = 10;
+    public static final int moderatorId = 5;
+
     private final PostRepository postRepository;
 /*    @Autowired
     private final UserService userService;*/
-    @Autowired
+
     private final PostMapperDto postMapperDto;
 
+    @Autowired
     public PostServiceImpl(PostRepository postRepository, PostMapperDto postMapperDto) {
         this.postRepository = postRepository;
         this.postMapperDto = postMapperDto;
     }
 
+    public PostResponse getPosts(int offset, int limit, String mode) {
+
+        PostResponse postResponse = new PostResponse();
+
+        if (mode.equals("recent")) {
+            sort = Sort.by("time").descending();
+            Page<Post> recentPage = postRepository.findAll(getSortedPaging(offset, limit, sort));
+            postResponse.setCount(recentPage.getTotalElements());
+            postResponse.setPosts(toPostDto(recentPage));
+        }
+        if (mode.equals("best")) {
+            Page<Posts> popularPage = postRepository.findPostsOrderByLikes(getPaging(offset, limit));
+            postResponse.setCount(popularPage.getTotalElements());
+            postResponse.setPosts(toPostDto(popularPage));
+        }
+        if (mode.equals("popular")) {
+            Page<Posts> bestPage = postRepository.findPostsOrderByComments(getPaging(offset, limit));
+            postResponse.setCount(bestPage.getTotalElements());
+            postResponse.setPosts(toPostDto(bestPage));
+        }
+        if (mode.equals("early")) {
+            sort = Sort.by("time").ascending();
+            Page<Posts> earlyPage = postRepository.findAll(getSortedPaging(offset, limit, sort));
+            postResponse.setCount(earlyPage.getTotalElements());
+            postResponse.setPosts(toPostDto(earlyPage));
+        }
+        return postResponse;
+    }
+
     @Override
     public Optional<Post> getPost(int id) {
-        return postRepository.findById(id);
+        return postRepository.findPostById(id);
     }
 
     @Override
