@@ -29,7 +29,7 @@ public class PostVote {
     @JoinColumn(name = "post_id", nullable = false, referencedColumnName = "id")
     private Post post;
 
-    @Column(name = "time", columnDefinition = "TIMESTAMP", nullable = false)
+    @Column(name = "time", columnDefinition = "DATETIME", nullable = false)
     private LocalDateTime time;
 
     @Column(name = "value", columnDefinition = "BOOLEAN", nullable = false, length = 1)

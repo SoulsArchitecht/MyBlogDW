@@ -1,10 +1,12 @@
 package sshibko.myblog.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import sshibko.myblog.api.response.GlobalSettingsResponse;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import sshibko.myblog.model.entity.GlobalSettings;
+@Repository
+public interface GlobalSettingsRepository extends CrudRepository<GlobalSettings, Integer> {
 
-public interface GlobalSettingsRepository extends JpaRepository<GlobalSettings, Integer> {
+    GlobalSettings findByCode(String code);
 
-    GlobalSettingsResponse findSettingResponseByCode(String code);
+    boolean IsExistByCodeAndValueIgnoreCase(String code, String value);
 }

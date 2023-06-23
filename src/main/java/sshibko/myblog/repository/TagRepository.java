@@ -1,9 +1,13 @@
 package sshibko.myblog.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import sshibko.myblog.model.entity.Tag;
 
-public interface TagRepository extends JpaRepository<Tag, Integer> {
+import java.util.Optional;
 
-    Tag getTagById(int id);
+@Repository
+public interface TagRepository extends CrudRepository<Tag, Integer> {
+
+    Optional<Tag> findByName(String name);
 }

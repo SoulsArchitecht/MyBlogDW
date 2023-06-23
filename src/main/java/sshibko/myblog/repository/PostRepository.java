@@ -6,75 +6,170 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import sshibko.myblog.model.dto.mapper.CalculatedPostDto;
 import sshibko.myblog.model.entity.Post;
+import sshibko.myblog.model.entity.User;
 import sshibko.myblog.model.enums.ModerationStatus;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-    String queryById = "SELECT p FROM Post p WHERE p.id = :id";
-
-    @Query(value = queryById)
-    Post FindPostById(@Param("id") int id);
-
-/*    @Query(
-            "SELECT p "
-                    + "FROM Post p "
-                    + "LEFT JOIN User u ON u.id = p.user "
-                    + "LEFT JOIN PostVote pv1 ON p.id = pv1.post AND pv1.value = true "
-                    + "LEFT JOIN PostVote pv2 ON p.id = pv2.post AND pv2.value = false "
-                    + "LEFT JOIN PostComment pc ON p.id = pc.posts "
-                    + "LEFT JOIN Tag2Post t2p ON p.id = t2p.postId "
-                    + "LEFT JOIN Tag t ON t.id = t2p.tagId "
-                    + "WHERE p.id = :id "
-                    + "GROUP BY p.id")
-    Optional<Post> findPostById(@Param("id") int id);*/
-
-    String query1 = "select count(p) as count "
-            + "from Post p "
-            + "where p.isActive = :isActive "
-            + " and p.moderationStatus = :moderationStatus "
-            + " and p.time <= :time ";
-
-    @Query(value = query1)
-    int getPostCount(
-            @Param("isActive") boolean isActive,
-            @Param("moderationStatus") ModerationStatus moderationStatus,
-            @Param("time") LocalDateTime time);
-
-    String query2 = "select p as post, "
-            + " size(p.postComments) as commentCount, "
-            + " coalesce((select size(v) from v where v.value > 0 group by p), 0) as likeCount,"
-            + " coalesce((select size(v) from v where v.value < 0 group by p), 0) as dislikeCount "
-            + "from Post p left join p.postVotes v "
-            + "where p.isActive = :isActive "
-            + " and p.moderationStatus = :moderationStatus "
-            + " and p.time <= :time "
-            + "group by p ";
-
-    @Query(value = query2)
-    List<CalculatedPostDto> getCalculatedPostDtoList(
-            @Param("isActive") boolean isActive,
-            @Param("moderationStatus") ModerationStatus moderationStatus,
-            @Param("time") LocalDateTime time,
-            Pageable pageable);
-
-    @Query(value = queryById)
-    Optional<Post> findPostById(int id);
-
-    @Query(
-            "SELECT p "
-                    + "FROM Post p "
-                    + "LEFT JOIN User u ON u.id = p.users "
-                    + "LEFT JOIN PostVote pv1 ON p.id = pv1.posts AND pv1.value = 1 "
-                    + "LEFT JOIN PostVote pv2 ON p.id = pv2.posts AND pv2.value = -1 "
-                    + "LEFT JOIN PostComment pc ON p.id = pc.posts "
-                    + "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' AND p.time <= CURRENT_TIME "
-                    + "GROUP BY p.id")
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.userId " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP()")
     Page<Post> findAll(Pageable pageable);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "LEFT JOIN PostComment pc ON pc.post = p.id " +
+            "WHERE p.isActive = 1 AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "GROUP BY p.id " +
+            "ORDER BY COUNT(pc) DESC")
+    Page<Post> findAllSortByCountCommentDesc(Pageable pageable);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "LEFT JOIN PostVote pv ON pv.post = p.id " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "GROUP BY p.id " +
+            "ORDER BY COUNT(pv) DESC")
+    Page<Post> findAllSortByCountLikeDesc(Pageable pageable);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND UPPER(p.title) LIKE CONCAT('%',UPPER(:query),'%')")
+    Page<Post> findAllByQuery(Pageable pageable, @Param("query") String query);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND DATE(p.time) = :date")
+    Page<Post> findAllByDate(Pageable pageable, @Param("date") Date date);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "LEFT JOIN p.tags t " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND t.name = :tagName")
+    Page<Post> findAllByTag(Pageable pageable, @Param("tagName") String tagName);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = true AND p.moderationStatus = :moderationStatus")
+    Page<Post> findAllByModerationStatus(Pageable pageable,
+                                         @Param("moderationStatus") ModerationStatus moderationStatus);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = true AND p.moderationStatus = :moderationStatus " +
+            "AND p.moderatorID = :moderatorID")
+    Page<Post> findAllByModerationStatusAndModerationID(
+            Pageable pageable,
+            @Param("moderationStatus") ModerationStatus moderationStatus,
+            @Param("moderatorID") int moderatorID);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = true AND p.moderationStatus = :moderationStatus " +
+            "AND u.id = :userID")
+    Page<Post> findAllByModerationStatusAndUserID(
+            Pageable pageable,
+            @Param("moderationStatus") ModerationStatus moderationStatus,
+            @Param("userID") int userID);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = false AND u.id = :userID")
+    Page<Post> findAllIsNotActiveByUserID(Pageable pageable, @Param("userID") int userID);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "LEFT JOIN PostComment pc ON pc.post = p.id " +
+            "LEFT JOIN PostVote pv ON pv.post = p.id " +
+            "LEFT JOIN p.tags " +
+            "WHERE p.isActive = true AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND p.id = :id")
+    Optional<Post> findPostByIDIsActiveAndAccepted(@Param("id") int id);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "LEFT JOIN PostComment pc ON pc.post = p.id " +
+            "LEFT JOIN PostVote pv ON pv.post = p.id " +
+            "LEFT JOIN p.tags " +
+            "WHERE p.isActive = :isActive AND p.moderationStatus = :moderationStatus " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND p.id = :id")
+    Optional<Post> findPostByID(@Param("id") int id,
+                                @Param("isActive") byte isActive,
+                                @Param("moderationStatus") ModerationStatus moderationStatus);
+
+    @Query(value = "SELECT p FROM Post p " +
+            "LEFT JOIN User u ON u.id = p.user " +
+            "WHERE p.isActive = 1 AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND YEAR(p.time) = :year " +
+            "ORDER BY p.time")
+    List<Post> findAllByYear(@Param("year") int year);
+
+    @Query(value = "SELECT YEAR(p.time) FROM Post p " +
+            "WHERE p.isActive = 1 AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "GROUP BY YEAR(p.time) " +
+            "ORDER BY YEAR(p.time)")
+    String[] findAllYearValue();
+
+    @Query(value = "SELECT COUNT(*) FROM Post p " +
+            "WHERE p.isActive = true " +
+            "AND p.moderationStatus != 'ACCEPTED'")
+    Optional<Integer> countAllActiveAndUnModeration();
+
+    @Query(value = "SELECT COUNT(*) FROM Post p " +
+            "WHERE p.isActive = true " +
+            "AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP()")
+    Optional<Integer> countAllActiveAndAccepted();
+
+    @Query(value = "SELECT COUNT(*) FROM Post p " +
+            "WHERE p.isActive = true " +
+            "AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND p.user = :user")
+    Optional<Integer> countAllActiveAndAcceptedByUser(@Param("user") User user);
+
+    @Query(value = "SELECT SUM(p.viewCount) FROM Post p " +
+            "WHERE p.isActive = true " +
+            "AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP()")
+    Optional<Integer> countViewsAllPosts();
+
+    @Query(value = "SELECT SUM(p.viewCount) FROM Post p " +
+            "WHERE p.isActive = true " +
+            "AND p.moderationStatus = 'ACCEPTED' " +
+            "AND p.time <= CURRENT_TIMESTAMP() " +
+            "AND p.user = :user")
+    Optional<Integer> countViewsAllPostsByUser(@Param("user") User user);
+
+    @Query(nativeQuery = true, value = "SELECT time FROM posts " +
+            "WHERE is_active = true AND moderation_status = 'ACCEPTED' " +
+            "ORDER BY time LIMIT 1")
+    LocalDateTime getTimeFirstPost();
+
+    @Query(nativeQuery = true, value = "SELECT time FROM posts " +
+            "WHERE is_active = true AND moderation_status = 'ACCEPTED' " +
+            "AND user_id = :userId " +
+            "ORDER BY time LIMIT 1")
+    LocalDateTime getTimeFirstPostByUser(@Param("userId") int id);
+
 }
